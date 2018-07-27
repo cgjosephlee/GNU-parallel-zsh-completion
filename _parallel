@@ -1,0 +1,33 @@
+#compdef parallel
+
+local args
+
+args+=(
+    '(--plus)--plus[Activate additional replacement strings]'
+    '(-j --jobs --max-procs -P)'{-j,--jobs,--max-procs,-P}'[Run this many jobs in parallel (see manual)]:int:'
+    '(--joblog)--joblog[Logfile for executed jobs]::_files'
+    '(-k --keep-order)'{-k,--keep-order}'[Keep sequence of output same as the order of input]'
+    '(--semaphore)--semaphore[Work as a counting semaphore (implies --bg)]'
+    '(--bg)--bg[Run command in background]'
+    '(--fg)--fg[Run command in foreground]'
+    '(--dry-run)--dry-run[Print the job to run and do nothing]'
+    '(-C --colsep)'{-C,--colsep}'[Column separator]:regexp:'
+    '(--pipe --spreadstdin)'{--pipe,--spreadstdin}'[Spread input to jobs on stdin]'
+    '(-p --interactive)'{-p,--interactive}'[Prompt the user about whether to run each command line (implies -v)]'
+    '(-v --verbose)'{-v,--verbose}'[Print the job to be run on stderr]'
+    '(-r --no-run-if-empty)'{-r,--no-run-if-empty}'[Skip if the stdin only contains whitespace]'
+    '(--recstart)--recstart[String used to split at record start]'
+    '(--recend)--recend[String used to split at record end]'
+    '(--regexp)--regexp[Interpret --recstart and --recend as regular expressions]'
+    '(--trim)--trim[Trim white space in input]:string:((
+        n\:\ No\ trim
+        l\:\ Left\ trim
+        r\:\ Right\ trim
+        lr\:\ Both\ trim
+        rl\:\ Both\ trim
+    ))'
+    '(-):command: _command_names -e'
+    '*::args: _normal'
+    )
+
+_arguments -s $args
